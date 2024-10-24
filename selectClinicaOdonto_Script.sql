@@ -35,8 +35,7 @@ select pac.rg "Registro Paciente",
 	telpac.numero "Contato"
 	from paciente pac
 		inner join telefonepaciente telpac on telpac.paciente_rg = pac.rg
-		inner join registroclinicopaciente regclinpac on regclinpac.paciente_rg = pac.rg
-			group by pac.rg
+		inner join registroclinicopaciente regclinpac on regclinpac.paciente_rg = pac.rg			
 				order by pac.nome;
                 
                 
@@ -67,7 +66,7 @@ select prof.cpf "Matrícula",
 	from agendamento agend
 		inner join dentista dent on dent.profissional_cpf = agend.dentista_profissional_cpf
         inner join profissional prof on prof.cpf = dent.profissional_cpf
-			group by agend.tipoProcedimento
+			group by agend.idAgendamento
 				order by prof.nome;
                 
 #Relatorio para verificar informações dos dentistas e quanto tempo de trabalho na clínica#
