@@ -21,7 +21,7 @@ select dent.cro "Registro Profissional",
 select prof.cpf "Registro do Gerente",
 		prof.nome "Nome",
 		concat('R$ ', format(sum(prof.salario + ger.comissao), 2, 'de_DE')) "Investimento Salarial + Comissão",            
-		count(bal.receita) "Receitas acima da meta"
+		count(bal.receita) "Balanços acima da meta"
 		from gerente ger  			
 		  inner join balanco bal on bal.gerente_profissional_cpf = ger.profissional_cpf
 		  inner join profissional prof on prof.cpf = ger.profissional_cpf
@@ -183,6 +183,7 @@ select prof.cargo "Cargo",
  # Relatório para verificar quantos balanços tiveram receita após a despesa da folha de pagamentos, agrupando por gerente#
 select prof.nome "Gerente Responsável",
 	prof.cpf "Mátricula",
+	concat('R$ ', format(sum(prof.salario + ger.comissao), 2, 'de_DE')) "Investimento Salarial + Comissão",
 	count(bal.idbalanco) "Balanços com Receita maior que Folha Pagamento"
 	from balanco bal
 		inner join gerente ger on ger.profissional_cpf = bal.gerente_profissional_cpf
